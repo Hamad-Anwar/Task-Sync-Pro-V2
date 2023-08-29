@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                                 Colors.white.withOpacity(.0),
                                 Colors.white.withOpacity(.0),
                               ])),
-                      child: TaskList(),
+                      child: const TaskList(),
                     )),
                     const ChangeButtonRow(),
                   ],

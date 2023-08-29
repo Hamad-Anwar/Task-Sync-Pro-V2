@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:todo/view_model/responsive.dart';
 
 import '../../../res/constants.dart';
 
@@ -107,6 +108,58 @@ class BackColors extends StatelessWidget {
                         lightAccentBlue.withOpacity(.2),
                         lightAccentBlue.withOpacity(.1),
                         lightAccentBlue.withOpacity(0),
+                      ]
+                  )
+              ),
+            )),
+       Positioned(
+            bottom: 1,
+            left: 1,
+            top:!Responsive.isTablet(context)? 100 : 200,
+            right: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.pinkAccent.withOpacity(.0),
+                        Colors.pinkAccent.withOpacity(.1),
+                        Colors.pinkAccent.withOpacity(.2),
+                        Colors.pinkAccent.withOpacity(.3),
+                        Colors.pinkAccent.withOpacity(.4),
+                        Colors.pinkAccent.withOpacity(.4),
+                        Colors.pinkAccent.withOpacity(.3),
+                        Colors.pinkAccent.withOpacity(.2),
+                        Colors.pinkAccent.withOpacity(.1),
+                        Colors.pinkAccent.withOpacity(0),
+                      ]
+                  )
+              ),
+            )),
+        Positioned(
+            bottom: 1,
+            right: 1,
+            child: Container(
+              height: size.height*0.3,
+              width: size.width*0.6,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.greenAccent.withOpacity(.0),
+                        Colors.greenAccent.withOpacity(.1),
+                        Colors.greenAccent.withOpacity(.2),
+                        Colors.greenAccent.withOpacity(.3),
+                        Colors.greenAccent.withOpacity(.4),
+                        Colors.greenAccent.withOpacity(.4),
+                        Colors.greenAccent.withOpacity(.3),
+                        Colors.greenAccent.withOpacity(.2),
+                        Colors.greenAccent.withOpacity(.1),
+                        Colors.greenAccent.withOpacity(0),
                       ]
                   )
               ),

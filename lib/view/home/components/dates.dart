@@ -15,6 +15,14 @@ class Dates extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Obx(() => Text(Utils.getMonth(DateTime.now().add(Duration(days: index))),
+          style: TextStyle(
+              color: controller.currentIndex.value==index ? Colors.white : Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+              height: 0
+          ),
+        ),),
         Obx(() => Text(Utils.getDate(DateTime.now().add(Duration(days: index))),
           style: TextStyle(
               color: controller.currentIndex.value==index ? Colors.white : Colors.black,
