@@ -80,7 +80,8 @@ class Utils{
       'Creative',
     ];
 
-    static Future<void> showWarningDialog(BuildContext context,String title,String msg,String button,VoidCallback onConfirm) async {
+    static Future<bool> showWarningDialog(BuildContext context,String title,String msg,String button,VoidCallback onConfirm) async {
+       bool confirmed=false;
       await showDialog(
         context: context,
         builder: (context) {
@@ -92,6 +93,7 @@ class Utils{
                 child: const Text('Cancel',style: TextStyle(color: Colors.black),),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  confirmed=false;
                 },
               ),
               TextButton(
@@ -99,12 +101,14 @@ class Utils{
                 onPressed: () {
                   onConfirm();
                   Navigator.pop(context);
+                  confirmed=true;
                 },
               ),
             ],
           );
         },
       );
+      return confirmed;
     }
 
 }
