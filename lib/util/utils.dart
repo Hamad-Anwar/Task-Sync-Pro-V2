@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/res/constants.dart';
 class Utils{
-
     static String getMonth(DateTime date){
       String formattedDate = DateFormat('MMM').format(date);
       return formattedDate;
@@ -26,9 +25,6 @@ class Utils{
       }
       return string;
     }
-
-
-
     static void showSnackBar(String title,String message,Widget icon){
       Get.showSnackbar(
           GetSnackBar(
@@ -43,6 +39,72 @@ class Utils{
           )
       );
     }
+   static Map<String,dynamic> images={
+      '0': 'assets/images/1.png',
+      '1': 'assets/images/2.png',
+      '2': 'assets/images/3.png',
+      '3': 'assets/images/4.png',
+      '4': 'assets/images/5.png',
+      '5': 'assets/images/6.png',
+      '6': 'assets/images/7.png',
+      '7': 'assets/images/8.png',
+      '8': 'assets/images/9.png',
+      '9': 'assets/images/10.png',
+    };
+    static List<Color> colors=[
+      lightBlue,
+      lightAccentBlue,
+      darkAccentBlue,
+      darkOrange,
+      lightOrange,
+      Colors.pinkAccent,
+      Colors.purpleAccent,
+      Colors.greenAccent,
+      neviBlue,
+      Colors.tealAccent
+    ];
+   static List<String> tags = [
+      'Study',
+      'Productive',
+      'Work',
+      'Personal',
+      'Health',
+      'Home',
+      'Errands',
+      'Social',
+      'Finance',
+      'Hobby',
+      'Family',
+      'Self-care',
+      'Tech',
+      'Creative',
+    ];
 
+    static Future<void> showWarningDialog(BuildContext context,String title,String msg,String button,VoidCallback onConfirm) async {
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title:  Text(title),
+            content:  Text(msg),
+            actions: [
+              TextButton(
+                child: const Text('Cancel',style: TextStyle(color: Colors.black),),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child:  Text(button,style: TextStyle(color: Colors.orange),),
+                onPressed: () {
+                  onConfirm();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
 }

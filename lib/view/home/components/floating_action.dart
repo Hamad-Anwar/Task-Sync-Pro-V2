@@ -22,6 +22,7 @@ class FloatingButton extends StatelessWidget {
       child: Container(
         height: 60,
         width: 60,
+        margin: const EdgeInsets.only(top: 10,bottom: 10),
         decoration: const BoxDecoration(
             shape: BoxShape.circle,
             gradient: LinearGradient(colors: [

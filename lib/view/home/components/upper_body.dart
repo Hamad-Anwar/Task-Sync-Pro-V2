@@ -20,6 +20,7 @@ class UperBody extends StatelessWidget {
         SizedBox(
           height: 130,
           child: ListView.builder(
+            controller: controller.scrollController,
             itemCount: 7,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,

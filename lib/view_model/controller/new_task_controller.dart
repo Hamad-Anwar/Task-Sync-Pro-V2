@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:todo/db_helper/dbHelper.dart';
 import 'package:todo/model/task_model.dart';
 import 'package:todo/util/utils.dart';
+import 'package:todo/view_model/controller/home_controller.dart';
 
 class NewTaskController extends GetxController {
+  DateTime? pickedDate;
   final DbHelper db = DbHelper();
   RxInt selectedImage = 0.obs;
   RxBool lowPeriority = false.obs;
@@ -17,6 +19,7 @@ class NewTaskController extends GetxController {
   RxString startTime = ''.obs;
   RxString endTime = ''.obs;
   RxBool loading = false.obs;
+  final homeController=Get.put(HomeController());
   final label = TextEditingController().obs;
   final description = TextEditingController().obs;
   final category = TextEditingController().obs;
@@ -26,7 +29,7 @@ class NewTaskController extends GetxController {
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (picker != null) {
       startTime.value =
-          '${Utils.addPrefix(picker.hour.toString())}:${Utils.addPrefix(picker.minute.toString())}:${picker.period.name}';
+          '${Utils.addPrefix(picker.hourOfPeriod.toString())}:${Utils.addPrefix(picker.minute.toString())}:${picker.period.name.toUpperCase()}';
     }
   }
   picEndTime(BuildContext context) async {
@@ -34,7 +37,7 @@ class NewTaskController extends GetxController {
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (picker != null) {
       endTime.value =
-          '${Utils.addPrefix(picker.hour.toString())}:${Utils.addPrefix(picker.minute.toString())}:${picker.period.name}';
+          '${Utils.addPrefix(picker.hourOfPeriod.toString())}:${Utils.addPrefix(picker.minute.toString())}:${picker.period.name.toUpperCase()}';
     }
   }
   showDatePick(BuildContext context) async {
@@ -44,6 +47,7 @@ class NewTaskController extends GetxController {
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 7)));
     if (picker != null) {
+      pickedDate=picker;
       selectedDate.value =
           '${Utils.addPrefix(picker.day.toString())}/${Utils.addPrefix(picker.month.toString())}/${picker.year}';
     }
@@ -95,8 +99,9 @@ class NewTaskController extends GetxController {
       return;
     }
     if (selectedDate.isEmpty) {
-      selectedDate.value =
-          '${Utils.addPrefix(DateTime.now().day.toString())}/${Utils.addPrefix(DateTime.now().month.toString())}/${Utils.addPrefix(DateTime.now().year.toString())}';
+      // selectedDate.value =
+      //     '${Utils.addPrefix(DateTime.now().day.toString())}/${Utils.addPrefix(DateTime.now().month.toString())}/${Utils.addPrefix(DateTime.now().year.toString())}';
+      showDatePick(context);
     }
     if (startTime.isEmpty) {
       picStartTime(context);
@@ -107,21 +112,26 @@ class NewTaskController extends GetxController {
       return;
     }
     loading.value = true;
-    db
-        .insert(TaskModel(
-            key: DateTime.now().microsecondsSinceEpoch.toString(),
-            startTime: startTime.value,
-            endTime: endTime.value,
-            date: selectedDate.value,
-            periority: lowPeriority.value ? 'Low' : 'High',
-            description: description.value.text.toString(),
-            category: category.value.text.toString(),
-            title: label.value.text.toString(),
-            image: selectedImage.value.toString(),
-            show: 'yes',
-            status: 'unComplete'))
+
+    db.insert(TaskModel(
+        key: DateTime.now().microsecondsSinceEpoch.toString(),
+        startTime: startTime.value,
+        endTime: endTime.value,
+        date: selectedDate.value,
+        periority: lowPeriority.value ? 'Low' : 'High',
+        description: description.value.text.toString(),
+        category: category.value.text.toString(),
+        title: label.value.text.toString(),
+        image: selectedImage.value.toString(),
+        show: 'yes',
+        status: 'unComplete'))
         .then((value) {
-      Timer(const Duration(seconds: 2), () {
+
+          // homeController.getTasks();
+
+      Duration dif=pickedDate!.difference(DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day));
+      homeController.list[dif.inDays].add(value);
+      Timer(const Duration(seconds: 1), () {
         loading.value = false;
         Get.back();
         Utils.showSnackBar(

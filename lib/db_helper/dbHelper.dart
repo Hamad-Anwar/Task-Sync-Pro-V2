@@ -39,6 +39,16 @@ class DbHelper
         where: 'key = ?',
         whereArgs: [id]);
   }
+
+  Future<int> update (String id,String key,String value) async {
+    var dbClient=await db;
+    return await dbClient!.update(
+        'Tasks',
+        { key : value},
+        where: 'key = ?',
+        whereArgs: [id]);
+  }
+
   Future<List<TaskModel>> getData() async {
     var dbClient = await db;
     final List<Map<String, Object?>> queryResult = await dbClient!.query('Tasks');

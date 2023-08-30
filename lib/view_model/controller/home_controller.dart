@@ -16,28 +16,27 @@ class HomeController extends GetxController {
     [].obs,
     [].obs,
     [].obs,
-  ];
+  ].obs;
   RxInt barIndex = 0.obs;
   RxList model = [].obs;
+  final ScrollController scrollController=ScrollController();
+
 
   getTasks() async {
     db.getData().then((value) {
       model.value = value;
-      getSepreteLists();
+      getSepretLists();
     });
   }
-
   setIndex(int value) {
     pageController.animateToPage(value,
         duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     currentIndex.value = value;
   }
-
   getDateAccordingTabs(int value){
     return '${Utils.addPrefix(dateTime.add(Duration(days: value)).day.toString())}/${Utils.addPrefix(dateTime.add(Duration(days: value)).month.toString())}/${Utils.addPrefix(dateTime.add(Duration(days: value)).year.toString())}';
   }
-
-  getSepreteLists(){
+  getSepretLists(){
     List<RxList<dynamic>> tempList=[];
     for(int i=0;i<7;i++){
       RxList tempList1=[].obs;
@@ -51,13 +50,34 @@ class HomeController extends GetxController {
     }
     list=tempList;
   }
-
-
-
-
-
-
-
+  onMoveNextPage(){
+    if(currentIndex.value<7){
+      setIndex(currentIndex.value+1);
+    }
+  }
+  onMoveBack(){
+    if(currentIndex.value>0){
+      setIndex(currentIndex.value-1);
+    }
+  }
+  onTaskComplete(int value,int index,int ind,String key,BuildContext context){
+    switch(value){
+      case 3: {
+        Utils.showWarningDialog(context, 'Complete Task','This task will be marked as completed', 'Confirm', () {
+          list[ind][index].status='complete';
+          list[ind].add('');
+          list[ind].remove('');
+          db.update(key, 'status', 'complete');
+        });
+      }
+      case 2:{
+        Utils.showWarningDialog(context, 'Delete Task','Are you want to sure to remove', 'Confirm', () {
+          list[ind].remove(list[ind][index]);
+          db.delete(key, 'Tasks',);
+        });
+      }
+    }
+  }
 
 
 }

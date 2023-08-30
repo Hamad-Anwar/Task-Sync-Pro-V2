@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/util/utils.dart';
 import 'package:todo/view_model/controller/new_task_controller.dart';
 import '../../../res/constants.dart';
 
@@ -68,7 +69,7 @@ class SelectImageList extends StatelessWidget {
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(20)
                                 ),
-                                child: Image.asset('assets/images/study.png',height: 80,width: 80,))),),
+                                child: Image.asset(Utils.images['$index'],height: 80,width: 80,))),),
                         Obx(() => controller.selectedImage.value==index ? const Icon(Icons.keyboard_arrow_up,color: Colors.orange) : const SizedBox(),)
                       ],
                     )),
