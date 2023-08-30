@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../res/constants.dart';
 import '../../../view_model/controller/home_controller.dart';
 import 'dates.dart';
@@ -14,7 +11,8 @@ class DateContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.sizeOf(context);
-    return Obx(() => Container(
+    return Obx(() => AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
         height: 110,
         width: 70,
         margin:  EdgeInsets.only(left: size.width*0.05),
