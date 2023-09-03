@@ -13,7 +13,9 @@ Welcome to the Task Scheduler App repository! This app is designed to help you m
 - **7-Day Planning:** Store and access data for a full week to help you plan ahead effectively.
 
 - **Responsive Design:** The app adapts to screens of all sizes, providing an optimal user experience on any device.
-- 
+  
+## Demo
+
 <img src="demo.png">
 
 ## Installation
