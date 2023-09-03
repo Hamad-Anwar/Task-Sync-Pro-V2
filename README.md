@@ -2,8 +2,6 @@
 
 Welcome to the Task Scheduler App repository! This app is designed to help you manage your tasks efficiently with a beautiful and user-friendly interface.
 
-<img src="demo.png">
-
 ## Features
 
 - **Stunning UI & Animations:** Enjoy a visually appealing design with smooth animations for a delightful user experience.
@@ -15,6 +13,8 @@ Welcome to the Task Scheduler App repository! This app is designed to help you m
 - **7-Day Planning:** Store and access data for a full week to help you plan ahead effectively.
 
 - **Responsive Design:** The app adapts to screens of all sizes, providing an optimal user experience on any device.
+- 
+<img src="demo.png">
 
 ## Installation
 
