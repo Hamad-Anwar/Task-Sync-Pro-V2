@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:todo/res/constants.dart';
 import 'package:todo/view/new_task/components/task_button.dart';
 import 'package:todo/view_model/controller/new_task_controller.dart';
+import 'package:todo/view_model/responsive.dart';
 import '../home/components/back_decoration.dart';
 import 'components/category_input.dart';
 import 'components/date_time.dart';
@@ -25,17 +26,12 @@ class NewTask extends StatelessWidget {
           topRight: Radius.circular(30)),
       child: Container(
           height: 650,
-          width: MediaQuery.sizeOf(context).width,
+          width:  Responsive.isLargeTablet(context) ?MediaQuery.sizeOf(context).width/2.5 : Responsive.isTablet(context)? MediaQuery.sizeOf(context).width/1.6 : MediaQuery.sizeOf(context).width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Stack(
             children: [
-              Transform.flip(
-                flipX: true,
-                flipY: true,
-                child: const BackColors(),
-              ),
               Positioned.fill(
                   child: Column(
                 children: [

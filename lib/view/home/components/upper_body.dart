@@ -15,16 +15,15 @@ class UperBody extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: defaultPadding,),
-        const CustomAppBar(),
-        const SizedBox(height: defaultPadding,),
+         CustomAppBar(),
         SizedBox(
-          height: 130,
+          height: 150,
           child: ListView.builder(
             controller: controller.scrollController,
             itemCount: 7,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(bottom: 30),
+            padding: const EdgeInsets.only(bottom: 30,top: defaultPadding),
             itemBuilder: (context, index) {
               return InkWell(
                 borderRadius: BorderRadius.circular(20),

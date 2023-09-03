@@ -10,6 +10,7 @@ class TaskList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Responsive(
         tablet: Grid(crossAsis: 2, ratio: 3,ind: index,),
+        largeTablet: Grid(crossAsis: 3, ratio: 3,ind: index,),
         mobile: Grid(
           ratio: 3,
           crossAsis: 1,

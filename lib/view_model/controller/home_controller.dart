@@ -1,13 +1,19 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:todo/db_helper/dbHelper.dart';
 import 'package:todo/util/utils.dart';
+import '../../data/shared pref/shared_pref.dart';
 
 class HomeController extends GetxController {
+  RxMap userData = {}.obs;
+  RxString name = ''.obs;
   RxInt currentIndex = 0.obs;
   final PageController pageController = PageController();
   final DbHelper db = DbHelper();
   final DateTime dateTime = DateTime.now();
+  Connectivity? connectivity;
+
   List<RxList> list=[
     [].obs,
     [].obs,
@@ -21,6 +27,32 @@ class HomeController extends GetxController {
   RxList model = [].obs;
   final ScrollController scrollController=ScrollController();
 
+
+  HomeController(){
+    if (userData['NAME'] == null) {
+      getUserData();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  getUserData() async {
+    userData.value = await UserPref.getUser();
+    getName();
+  }
+  getName() {
+    name.value = userData['NAME'];
+  }
 
   getTasks() async {
     db.getData().then((value) {

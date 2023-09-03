@@ -1,4 +1,5 @@
 
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -109,6 +110,14 @@ class Utils{
         },
       );
       return confirmed;
+    }
+
+
+    static bool validateEmail(String email){
+      return EmailValidator.validate(email);
+    }
+    static String extractFirebaseError(String error){
+      return error.substring(error.indexOf(']')+1);
     }
 
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import '../../../res/constants.dart';
 import '../../../view_model/controller/home_controller.dart';
 import 'dates.dart';
-
 class DateContainer extends StatelessWidget {
   final int index;
   DateContainer({super.key, required this.index});

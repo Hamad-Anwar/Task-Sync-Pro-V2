@@ -40,6 +40,17 @@ dependencies:
   animated_bottom_navigation_bar: ^1.2.0
   sqflite: ^2.3.0
   path_provider: ^2.1.0
+  google_fonts: ^5.1.0
+  email_validator: ^2.1.17
+  font_awesome_flutter: ^10.5.0
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.7.3
+  firebase_database: ^10.2.5
+  shared_preferences: ^2.2.0
+  google_sign_in: ^6.1.4
+  sign_in_with_apple: ^5.0.0
+  flutter_svg: ^2.0.7
+  connectivity: ^3.0.6
 
 dev_dependencies:
   flutter_test:

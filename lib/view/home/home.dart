@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo/res/constants.dart';
 import 'package:todo/view_model/controller/home_controller.dart';
 import 'components/back_decoration.dart';
 import 'components/bottom_nav_bar.dart';
@@ -12,27 +11,30 @@ class HomePage extends StatelessWidget {
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: const FloatingButton(),
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            const BackColors(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UperBody(),
-                const Expanded(
-                  child: TaskPageBody(),
+    return Material(
+      child: Stack(
+        children: [
+          const BackColors(),
+          SafeArea(
+            child: Scaffold(
+                floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+                floatingActionButton: const FloatingButton(),
+                bottomNavigationBar: BottomNavBar(),
+                backgroundColor: Colors.transparent,
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    UperBody(),
+                    const Expanded(
+                      child: TaskPageBody(),
+                    ),
+
+                  ],
+                )
             ),
-                BottomNavBar(),
-          ],
-        ),
-        ]
-      )
-    )
+          ),
+        ],
+      ),
     );
   }
 }

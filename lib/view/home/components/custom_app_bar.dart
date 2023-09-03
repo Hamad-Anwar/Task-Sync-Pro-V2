@@ -1,17 +1,19 @@
-
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:todo/view_model/controller/home_controller.dart';
 import '../../../res/constants.dart';
+import '../../../view_model/responsive.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+   CustomAppBar({super.key});
+   final controller=Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: [
+          if(Responsive.isTablet(context)) Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -22,16 +24,16 @@ class CustomAppBar extends StatelessWidget {
                   letterSpacing: 2,
                   fontSize: 18
               ),),
-              Text('Imran Hossen',style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              Obx(() => Text(controller.name.value,style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2,
                   height: 0,
                   fontSize: 25
-              ),),
+              ),),)
             ],
           ),
-          const Spacer(),
+           const Spacer(flex: 10,),
           Container(
             height: 50,
             width: 50,
@@ -47,7 +49,8 @@ class CustomAppBar extends StatelessWidget {
                 ]
             ),
             child: const Icon(Icons.account_circle_outlined,color: Colors.white,),
-          )
+          ),
+          if(Responsive.isTablet(context)) const Spacer(),
         ],
       ),
     );
